@@ -1,0 +1,8 @@
+{
+    "name": "Local Library API documentation",
+    "version": "1.0.0",
+    "description": "API test list manager",
+    "template": {
+        "forceLanguage": "en"
+    }
+}

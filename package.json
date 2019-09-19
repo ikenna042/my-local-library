@@ -10,6 +10,7 @@
     "devstart": "nodemon ./bin/www"
   },
   "dependencies": {
+    "apidoc": "^0.17.7",
     "async": "^3.1.0",
     "compression": "^1.7.4",
     "cookie-parser": "~1.4.4",

@@ -7,12 +7,37 @@ var author_controller = require('../controllers/author');
 var genre_controller = require('../controllers/genre');
 var book_instance_controller = require('../controllers/bookinstance');
 
+/**
+ * @apiDefine UserError
+ * @apiError {Object} 400 Some parameters may contain invalid values.
+ * @apiError 404 Thing not found.
+ * @apiError 401 master access only.
+ */
+
 /// BOOK ROUTES ///
 
 // GET catalog home page.
 router.get('/', book_controller.index);
 
 // GET request for creating a Book. NOTE This must come before routes that display Book (uses id).
+
+/**
+ * @api {post} /api/book Create book
+ * @apiVersion 0.2.0
+ * @apiName CreateBook
+ * @apiGroup Book
+ * @apiParam {String} title Title of the book (required)
+ * @apiParam {String} author Author of the book (required)
+ * @apiParam {String} summary Summary of the book (required)
+ * @apiParam {String} isbn ISBN of the book (required)
+ * @apiParam {String} [genre] Genre of the book
+ * @apiSuccess {String} title Title of the book
+ * @apiSuccessExample Success-Response:
+ *      HTTP/1.1 201 OK
+ * 
+ * @apiUse UserError
+ * @apiDescription This holds all record of books.
+ */
 router.get('/book/create', book_controller.book_create_get);
 
 // POST request for creating Book.
@@ -28,6 +53,24 @@ router.post('/book/:id/delete', book_controller.book_delete_post);
 router.get('/book/:id/update', book_controller.book_update_get);
 
 // POST request to update Book.
+/**
+ * @api {post} /api/book Update book
+ * @apiVersion 0.2.0
+ * @apiName UpdateBook
+ * @apiGroup Book
+ * @apiParam {ObjectId} recordId ID of the book (required)
+ * @apiParam {String} title Title of the book (required)
+ * @apiParam {String} author Author of the book (required)
+ * @apiParam {String} summary Summary of the book (required)
+ * @apiParam {String} isbn ISBN of the book (required)
+ * @apiParam {String} [genre] Genre of the book
+ * @apiSuccess {String} title Title of the book
+ * @apiSuccessExample Success-Response:
+ *      HTTP/1.1 201 OK
+ * 
+ * @apiUse UserError
+ * @apiDescription This holds all record of books.
+ */
 router.post('/book/:id/update', book_controller.book_update_post);
 
 // GET request for one Book.
